@@ -8,12 +8,12 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "self/Shader.h"
-#include "self/Camera.h"
-#include "self/error.h"
+#include "Shader.h"
+#include "Camera.h"
+#include "error.h"
 
 
-#include "self/stb_image.h"
+#include "stb_image.h"
 
 void window_resize_callback(GLFWwindow*, int, int);
 void mouse_callback(GLFWwindow*, double, double);
@@ -71,7 +71,7 @@ int main() {
 	glfwSetScrollCallback(window, scroll_callback);
 
 	/* ------------------------- Shader -------------------------------*/
-	Shader shader("res/shaders/shader.vert", "res/shaders/shader.frag");
+	Shader shader(RESOURCES_PATH "res/shaders/shader.vert", RESOURCES_PATH "res/shaders/shader.frag");
 
 
 	/* ----------------- Buffers --------------------------------*/
@@ -164,7 +164,7 @@ int main() {
 	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
 
 	// load and generate texture1
-	load_texture("./res/textures/wall.png", true);
+	load_texture(RESOURCES_PATH "res/textures/wall.png", true);
 
 	unsigned int texture2;
 	GLCall(glGenTextures(1, &texture2));
@@ -177,7 +177,7 @@ int main() {
 	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
 
 	// load and generate texture2
-	load_texture("./res/textures/awesomeface.png", true);
+	load_texture(RESOURCES_PATH "res/textures/awesomeface.png", true);
 
 	shader.use();
 	shader.setInt("u_Texture0", 0);
